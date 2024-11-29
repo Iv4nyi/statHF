@@ -1,0 +1,1111 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    \DeclareUnicodeCharacter{2260}{\ensuremath{\neq}}
+	\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Keep aspect ratio if custom image width or height is specified
+    \setkeys{Gin}{keepaspectratio}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+
+    \usepackage{iftex}
+    \ifPDFTeX
+        \usepackage[T1]{fontenc}
+        \IfFileExists{alphabeta.sty}{
+              \usepackage{alphabeta}
+          }{
+              \usepackage[mathletters]{ucs}
+              \usepackage[utf8x]{inputenc}
+          }
+    \else
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+    \fi
+
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics
+                         % to support a larger range
+    \makeatletter % fix for old versions of grffile with XeLaTeX
+    \@ifpackagelater{grffile}{2019/11/01}
+    {
+      % Do nothing on new versions
+    }
+    {
+      \def\Gread@@xetex#1{%
+        \IfFileExists{"\Gin@base".bb}%
+        {\Gread@eps{\Gin@base.bb}}%
+        {\Gread@@xetex@aux#1}%
+      }
+    }
+    \makeatother
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{array}     % table support for pandoc >= 2.11.3
+    \usepackage{calc}      % table minipage width calculation for pandoc >= 2.11.1
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{soul}      % strikethrough (\st) support for pandoc >= 3.0.0
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+
+
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{2. Feladat}
+    
+    
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.61,0.40,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.80,0.25,0.22}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.46,0.46,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.41,0.47,0.13}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.36,0.12}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.52,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{0.89,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb.
+    \makeatletter
+        \newbox\Wrappedcontinuationbox
+        \newbox\Wrappedvisiblespacebox
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}}
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}}
+        \newcommand*\Wrappedcontinuationindent {3ex }
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox}
+        % Take advantage of the already applied Pygments mark-up to insert
+        % potential linebreaks for TeX processing.
+        %        {, <, #, %, $, ' and ": go to next line.
+        %        _, }, ^, &, >, - and ~: stay at end of broken line.
+        % Use of \textquotesingle for straight quote.
+        \newcommand*\Wrappedbreaksatspecials {%
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}%
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}%
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}%
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}%
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}%
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}%
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}%
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}%
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}%
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}%
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}%
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}%
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}%
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}%
+        }
+        % Some characters . , ; ? ! / are not pygmentized.
+        % This macro makes them "active" and they will insert potential linebreaks
+        \newcommand*\Wrappedbreaksatpunct {%
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}%
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}%
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}%
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}%
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}%
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}%
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}%
+            \catcode`\.\active
+            \catcode`\,\active
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active
+            \lccode`\~`\~
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    \makeatletter
+    \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+      {3.25ex \@plus1ex \@minus.2ex}%
+      {1em}%
+      {\normalfont\normalsize\bfseries}}
+    \makeatother
+
+    \setcounter{section}{-1}
+
+    \maketitle
+    
+    
+
+    
+    \section{Előkészületek}\label{elux151kuxe9szuxfcletek}
+
+    \subsection{Szükséges könyvtárak
+importálása}\label{szuxfcksuxe9ges-kuxf6nyvtuxe1rak-importuxe1luxe1sa}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{529}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{o}{\PYZpc{}}\PY{k}{reset} \PYZhy{}f
+
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k+kn}{import} \PY{n}{LinearRegression}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k+kn}{import} \PY{n}{StandardScaler}
+\PY{k+kn}{import} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{api} \PY{k}{as} \PY{n+nn}{sm}
+\PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k+kn}{import} \PY{n}{stats}
+\PY{k+kn}{from} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{stats}\PY{n+nn}{.}\PY{n+nn}{outliers\PYZus{}influence} \PY{k+kn}{import} \PY{n}{variance\PYZus{}inflation\PYZus{}factor}
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \subsection{Adatok beolvasása}\label{adatok-beolvasuxe1sa}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{530}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Oszlopok definiálása}
+\PY{n}{cols} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} Adatok beolvasása string\PYZhy{}ként}
+\PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/bead2.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{file}\PY{p}{:}
+    \PY{n}{lines} \PY{o}{=} \PY{n}{file}\PY{o}{.}\PY{n}{readlines}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Az első sor elhagyása (mivel az az oszlopokat tartalmazza)}
+\PY{c+c1}{\PYZsh{} Az értékek átalakítása soronként listává}
+\PY{n}{data} \PY{o}{=} \PY{p}{[}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n+nb}{float}\PY{p}{,} \PY{n}{line}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{k}{for} \PY{n}{line} \PY{o+ow}{in} \PY{n}{lines}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{]}
+
+\PY{c+c1}{\PYZsh{} DataFrame létrehozása}
+\PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{cols}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Adatok szétválasztása}
+\PY{n}{X} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}  \PY{c+c1}{\PYZsh{} magyarázó változók}
+\PY{n}{y} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}             \PY{c+c1}{\PYZsh{} eredményváltozó}
+
+\PY{c+c1}{\PYZsh{} Alapvető statisztikák}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Alapvető statisztikák:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Alapvető statisztikák:
+               Y        X\_1        X\_2
+count  50.000000  50.000000  50.000000
+mean    6.130800   4.994800   5.082600
+std     4.188834   2.909244   2.786417
+min     0.000000   0.520000   0.340000
+25\%     1.335000   2.557500   2.612500
+50\%     7.915000   4.945000   5.130000
+75\%    10.000000   7.552500   7.927500
+max    10.000000   9.900000   9.400000
+    \end{Verbatim}
+
+    \section{Becslések}\label{becsluxe9sek}
+
+    \subsection{Az együtthatók
+pontbecslése}\label{az-egyuxfctthatuxf3k-pontbecsluxe9se}
+
+\subsubsection{Regressziós együtthatók
+pontbecslése}\label{regressziuxf3s-egyuxfctthatuxf3k-pontbecsluxe9se}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{531}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Modell illesztése}
+\PY{n}{model} \PY{o}{=} \PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
+\PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Együtthatók és tengelymetszet}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Regressziós együtthatók:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b\PYZus{}0 (tengelymetszet) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model}\PY{o}{.}\PY{n}{intercept\PYZus{}}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b\PYZus{}1 (küzdőképesség) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b\PYZus{}2 (gumimaci pontszám) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Regressziós együtthatók:
+b\_0 (tengelymetszet) = 4.1082
+b\_1 (küzdőképesség) = 1.0282
+b\_2 (gumimaci pontszám) = -0.6124
+    \end{Verbatim}
+
+    \subsubsection{Standardizált regressziós együtthatók
+pontbecslése}\label{standardizuxe1lt-regressziuxf3s-egyuxfctthatuxf3k-pontbecsluxe9se}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{532}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Standardizálás}
+\PY{n}{scaler} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}
+\PY{n}{X\PYZus{}scaled} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{X}\PY{p}{)}
+\PY{n}{y\PYZus{}scaled} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{y}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Standardizált modell illesztése}
+\PY{n}{model\PYZus{}scaled} \PY{o}{=} \PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
+\PY{n}{model\PYZus{}scaled}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}scaled}\PY{p}{,} \PY{n}{y\PYZus{}scaled}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Standardizált együtthatók}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Standardizált regressziós együtthatók:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b\PYZus{}1* (küzdőképesség) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model\PYZus{}scaled}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b\PYZus{}2* (gumimaci pontszám) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model\PYZus{}scaled}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Standardizált regressziós együtthatók:
+b\_1* (küzdőképesség) = 0.7141
+b\_2* (gumimaci pontszám) = -0.4074
+    \end{Verbatim}
+
+    \subsubsection{Lineáris modell:}\label{lineuxe1ris-modell}
+
+OLS Lineáris regresszió
+
+\subsubsection{Eredmények
+értelmezése}\label{eredmuxe9nyek-uxe9rtelmezuxe9se}
+
+Az együtthatók közvetlenül összehasonlíthatók, mert azonos skálán
+vannak.\\
+Látható, hogy az X\_1 változó hatása erősebb az Y-ra, mint X\_2-é.
+
+    \subsection{Előrejelzés
+készítése}\label{elux151rejelzuxe9s-kuxe9szuxedtuxe9se}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{533}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Új megfigyelés}
+\PY{n}{X\PYZus{}new} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}
+    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mi}{85}\PY{p}{]}\PY{p}{,}
+    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+m+mf}{8.5}\PY{p}{]}
+\PY{p}{\PYZcb{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Előrejelzés}
+\PY{n}{prediction} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}new}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Előrejelzés eredménye:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Input értékek:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{} Küzdőképesség (X\PYZus{}1) = }\PY{l+s+si}{\PYZob{}}\PY{n}{X\PYZus{}new}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{} Gumimaci pontszám (X\PYZus{}2) = }\PY{l+s+si}{\PYZob{}}\PY{n}{X\PYZus{}new}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Becsült erő (Y) = }\PY{l+s+si}{\PYZob{}}\PY{n}{prediction}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Előrejelzés eredménye:
+Input értékek:
+- Küzdőképesség (X\_1) = 85
+- Gumimaci pontszám (X\_2) = 8.5
+
+Becsült erő (Y) = 86.2962
+    \end{Verbatim}
+
+    \subsection{Konfidenciaintervallum az
+együtthatókra}\label{konfidenciaintervallum-az-egyuxfctthatuxf3kra}
+
+\subsubsection{Kód és eredmény}\label{kuxf3d-uxe9s-eredmuxe9ny}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{534}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{X\PYZus{}sm} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{add\PYZus{}constant}\PY{p}{(}\PY{n}{X}\PY{p}{)}
+\PY{n}{model\PYZus{}sm} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{OLS}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{n}{X\PYZus{}sm}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} 95\PYZpc{}\PYZhy{}os konfidencia intervallumok az együtthatókra}
+\PY{n}{conf\PYZus{}int} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{conf\PYZus{}int}\PY{p}{(}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Egy R\PYZhy{}szerű summary:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{conf\PYZus{}int}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Együtthatók 95}\PY{l+s+si}{\PYZpc{}\PYZhy{}o}\PY{l+s+s2}{s konfidencia intervallumai:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}}\PY{l+s+s2}{\PYZdq{}} \PY{o}{*} \PY{l+m+mi}{50}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b\PYZus{}0 (tengelymetszet):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[}\PY{l+s+si}{\PYZob{}}\PY{n}{conf\PYZus{}int}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+si}{\PYZob{}}\PY{n}{conf\PYZus{}int}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{b\PYZus{}1 (küzdőképesség):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[}\PY{l+s+si}{\PYZob{}}\PY{n}{conf\PYZus{}int}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+si}{\PYZob{}}\PY{n}{conf\PYZus{}int}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{b\PYZus{}2 (gumimaci pontszám):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[}\PY{l+s+si}{\PYZob{}}\PY{n}{conf\PYZus{}int}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+si}{\PYZob{}}\PY{n}{conf\PYZus{}int}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Egy R-szerű summary:
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:                      Y   R-squared:                       0.708
+Model:                            OLS   Adj. R-squared:                  0.695
+Method:                 Least Squares   F-statistic:                     56.88
+Date:                Fri, 29 Nov 2024   Prob (F-statistic):           2.81e-13
+Time:                        17:23:12   Log-Likelihood:                -111.32
+No. Observations:                  50   AIC:                             228.6
+Df Residuals:                      47   BIC:                             234.4
+Df Model:                           2
+Covariance Type:            nonrobust
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          4.1082      0.912      4.506      0.000       2.274       5.942
+X\_1            1.0282      0.114      9.041      0.000       0.799       1.257
+X\_2           -0.6124      0.119     -5.158      0.000      -0.851      -0.374
+==============================================================================
+Omnibus:                        2.782   Durbin-Watson:                   1.569
+Prob(Omnibus):                  0.249   Jarque-Bera (JB):                1.544
+Skew:                          -0.087   Prob(JB):                        0.462
+Kurtosis:                       2.157   Cond. No.                         21.6
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly
+specified.
+
+
+              0         1
+const  2.273973  5.942342
+X\_1    0.799377  1.256950
+X\_2   -0.851320 -0.373576
+
+Együtthatók 95\%-os konfidencia intervallumai:
+--------------------------------------------------
+b\_0 (tengelymetszet):
+[2.2740, 5.9423]
+
+b\_1 (küzdőképesség):
+[0.7994, 1.2570]
+
+b\_2 (gumimaci pontszám):
+[-0.8513, -0.3736]
+    \end{Verbatim}
+
+    \subsubsection{Eredmények
+értelmezése}\label{eredmuxe9nyek-uxe9rtelmezuxe9se}
+
+\subparagraph{A konfidencia intervallumok
+jelentése:}\label{a-konfidencia-intervallumok-jelentuxe9se}
+
+95\%-os valószínűséggel a valódi együttható értéke a megadott
+intervallumon belül van. Az intervallum szélessége a becslés pontosságát
+jelzi (minél szélesebb, annál bizonytalanabb a becslés).\\
+Ha az intervallum nem tartalmazza a 0-t, akkor az adott változó hatása
+szignifikáns (α = 0.05 mellett).
+
+\subparagraph{Következtetések:}\label{kuxf6vetkeztetuxe9sek}
+
+A változók szignifikánsak.
+
+    \subsection{Előrejelzési
+intervallum}\label{elux151rejelzuxe9si-intervallum}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{535}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Konstans hozzáadása, csupa 1\PYZhy{}es}
+\PY{n}{X\PYZus{}new\PYZus{}sm} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{add\PYZus{}constant}\PY{p}{(}\PY{n}{X\PYZus{}new}\PY{p}{,} \PY{n}{has\PYZus{}constant}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{add}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Előrejelzési intervallum számítása}
+\PY{n}{prediction} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{get\PYZus{}prediction}\PY{p}{(}\PY{n}{X\PYZus{}new\PYZus{}sm}\PY{p}{)}
+\PY{n}{pred\PYZus{}summary} \PY{o}{=} \PY{n}{prediction}\PY{o}{.}\PY{n}{summary\PYZus{}frame}\PY{p}{(}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Előrejelzés és intervallumok:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}}\PY{l+s+s2}{\PYZdq{}} \PY{o}{*} \PY{l+m+mi}{50}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Pontbecslés: }\PY{l+s+si}{\PYZob{}}\PY{n}{pred\PYZus{}summary}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{95\PYZpc{}\PYZhy{}os előrejelzési intervallum:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[}\PY{l+s+si}{\PYZob{}}\PY{n}{pred\PYZus{}summary}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{obs\PYZus{}ci\PYZus{}lower}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+si}{\PYZob{}}\PY{n}{pred\PYZus{}summary}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{obs\PYZus{}ci\PYZus{}upper}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Előrejelzés és intervallumok:
+--------------------------------------------------
+Pontbecslés: 86.2962
+95\%-os előrejelzési intervallum:
+[67.3380, 105.2545]
+    \end{Verbatim}
+
+    \section{Illeszkedésdiagnosztika}\label{illeszkeduxe9sdiagnosztika}
+
+\subsection{Determinációs együttható (R²) és korrigált
+R²}\label{determinuxe1ciuxf3s-egyuxfctthatuxf3-ruxb2-uxe9s-korriguxe1lt-ruxb2}
+
+\subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{536}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{r2} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{rsquared}
+\PY{n}{adj\PYZus{}r2} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{rsquared\PYZus{}adj}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Determinációs együtthatók:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}}\PY{l+s+s2}{\PYZdq{}} \PY{o}{*} \PY{l+m+mi}{50}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{R² = }\PY{l+s+si}{\PYZob{}}\PY{n}{r2}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Korrigált R² = }\PY{l+s+si}{\PYZob{}}\PY{n}{adj\PYZus{}r2}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Különbség = }\PY{l+s+si}{\PYZob{}}\PY{p}{(}\PY{n}{r2}\PY{o}{\PYZhy{}}\PY{n}{adj\PYZus{}r2}\PY{p}{)}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Determinációs együtthatók:
+--------------------------------------------------
+R² = 0.7077
+Korrigált R² = 0.6952
+Különbség = 0.0124
+    \end{Verbatim}
+
+    \subsubsection{Értelmezés}\label{uxe9rtelmezuxe9s}
+
+\paragraph{R² (Determinációs
+együttható):}\label{ruxb2-determinuxe1ciuxf3s-egyuxfctthatuxf3}
+
+A determinációs együttható értéke 0.7077, ami a modell által magyarázott
+variancia arányát mutatja.\\
+Az R² a teljes varianciához viszonyítva fejezi ki a modell által
+megmagyarázott hányadot.\\
+Értéke 0 és 1 közé esik, ahol 0 esetén a modell semmit nem magyaráz, 1
+esetén tökéletes az illeszkedés.\\
+Az R² = 1 - (SSE/SST) képlettel számolható, ahol SSE a hiba
+szórásnégyzetösszeg, SST a teljes szórásnégyzetösszeg.
+
+\paragraph{Korrigált R²:}\label{korriguxe1lt-ruxb2}
+
+A korrigált R² értéke 0.6952, ami figyelembe veszi a magyarázó változók
+számát is.\\
+A korrigált R² = 1 - (1-R²)*(n-1)/(n-k-1) képlettel számolható, ahol n a
+mintaelemszám, k a magyarázó változók száma.\\
+Ez a mutató bünteti a felesleges magyarázó változók bevonását.\\
+Értéke mindig kisebb vagy egyenlő, mint az R².
+
+\paragraph{A két mutató
+jelentősége:}\label{a-kuxe9t-mutatuxf3-jelentux151suxe9ge}
+
+Az R² érték sosem csökken új változó bevonásakor, akkor sem, ha az
+valójában nem javít a modellen.\\
+A korrigált R² ezzel szemben csökkenhet, ha nem hasznos változót vonunk
+be a modellbe.\\
+Modellek összehasonlítására ezért a korrigált R² alkalmasabb.\\
+Ha nagy a különbség a két érték között, az felesleges változók
+jelenlétére utalhat.
+
+\paragraph{Értékelés:}\label{uxe9rtuxe9keluxe9s}
+
+A kapott R² = 0.7077 azt jelenti, hogy modellünk a variancia 70.77\%-át
+magyarázza meg. A korrigált R² = 0.6952 érték a modell tényleges
+magyarázó erejét mutatja.
+
+    \section{Modelldiagnosztika}\label{modelldiagnosztika}
+
+\subsection{Modelldiagnosztikai
+tesztek}\label{modelldiagnosztikai-tesztek}
+
+\subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{541}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} F\PYZhy{}próba statisztikái}
+\PY{n}{f\PYZus{}stat} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{fvalue}
+\PY{n}{f\PYZus{}pvalue} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{f\PYZus{}pvalue}
+\PY{n}{df\PYZus{}reg} \PY{o}{=} \PY{l+m+mi}{2}  \PY{c+c1}{\PYZsh{} magyarázó változók száma}
+\PY{n}{df\PYZus{}res} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}  \PY{c+c1}{\PYZsh{} n\PYZhy{}k\PYZhy{}1, ahol k a magyarázó változók száma}
+\PY{n}{f\PYZus{}crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{f}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{l+m+mf}{0.95}\PY{p}{,} \PY{n}{df\PYZus{}reg}\PY{p}{,} \PY{n}{df\PYZus{}res}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{F\PYZhy{}statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{f\PYZus{}stat}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{p\PYZhy{}érték: }\PY{l+s+si}{\PYZob{}}\PY{n}{f\PYZus{}pvalue}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Kritikus érték (F0.95(}\PY{l+s+si}{\PYZob{}}\PY{n}{df\PYZus{}reg}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{,}\PY{l+s+si}{\PYZob{}}\PY{n}{df\PYZus{}res}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{)): }\PY{l+s+si}{\PYZob{}}\PY{n}{f\PYZus{}crit}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+F-statisztika: 56.8848
+p-érték: 2.808718819001525e-13
+Kritikus érték (F0.95(2,47)): 3.1951
+    \end{Verbatim}
+
+    \subsubsection{Értelmezés}\label{uxe9rtelmezuxe9s}
+
+\paragraph{Hipotézisek:}\label{hipotuxe9zisek}
+
+H\_0: A modell nem magyarázza az eredményváltozó varianciáját (X\_1 =
+X\_2 = 0)\\
+H\_1: A modell szignifikánsan magyarázza az eredményváltozó varianciáját
+(X\_i ≠ 0)\\
+Szignifikanciaszint: α = 0.05
+
+\paragraph{F-próba eredménye:}\label{f-pruxf3ba-eredmuxe9nye}
+
+F-statisztika értéke: 56.8848\\
+p-érték: 2.808718819001525e-13\\
+Kritikus érték (F0.95(2,47)): 3.1951
+
+\paragraph{Döntés:}\label{duxf6ntuxe9s}
+
+Az F-próba p-értéke (2.808718819001525e-13) kisebb, mint α = 0.05.\\
+Elvetjük a nullhipotézist.
+
+\paragraph{Következtetés:}\label{kuxf6vetkeztetuxe9s}
+
+A kapott eredmények alapján a modellünk szignifikáns.\\
+Ez azt jelenti, hogy a küzdőképesség és gumimaci pontszám együttesen
+magyarázzák szignifikánsan a mesehős erejét.\\
+A modell alkalmas előrejelzésre és további elemzésre.\\
+Az eredmény összhangban van a korábban számolt R² értékkel.
+
+\paragraph{A teszt jelentősége:}\label{a-teszt-jelentux151suxe9ge}
+
+Az F-próba a modell egészének magyarázó erejét vizsgálja.\\
+Azt teszteli, hogy a magyarázó változók együttesen szignifikáns hatással
+vannak-e az eredményváltozóra.\\
+Az F-próba a determinációs együttható nullától való eltérését
+vizsgálja.\\
+A teszt a regressziós modell gyakorlati használhatóságáról ad
+információt.
+
+    \subsection{Változók szignifikanciájának
+tesztelése}\label{vuxe1ltozuxf3k-szignifikanciuxe1juxe1nak-teszteluxe9se}
+
+\subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{538}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Kritikus érték meghatározása (kétoldali próba)}
+\PY{n}{df\PYZus{}res} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{3}  \PY{c+c1}{\PYZsh{} szabadságfok: n\PYZhy{}k\PYZhy{}1}
+\PY{n}{t\PYZus{}crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{t}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{l+m+mf}{0.975}\PY{p}{,} \PY{n}{df\PYZus{}res}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 0.975 a kétoldali próba miatt}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Kritikus érték:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t\PYZus{}krit = ±}\PY{l+s+si}{\PYZob{}}\PY{n}{t\PYZus{}crit}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{ (szabadságfok = }\PY{l+s+si}{\PYZob{}}\PY{n}{df\PYZus{}res}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Együtthatók tesztjei:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{tables}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Kritikus érték:
+t\_krit = ±2.0117 (szabadságfok = 47)
+
+Együtthatók tesztjei:
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          4.1082      0.912      4.506      0.000       2.274       5.942
+X\_1            1.0282      0.114      9.041      0.000       0.799       1.257
+X\_2           -0.6124      0.119     -5.158      0.000      -0.851      -0.374
+==============================================================================
+    \end{Verbatim}
+
+    \subsubsection{Értelmezés}\label{uxe9rtelmezuxe9s}
+
+\paragraph{Hipotézispárok:}\label{hipotuxe9zispuxe1rok}
+
+Tengelymetszet (b\_0):\\
+H\_0: b\_0 = 0\\
+H\_1: b\_0 ≠ 0
+
+Küzdőképesség (b\_1):\\
+H\_0: b\_1 = 0\\
+H\_1: b\_1 ≠ 0
+
+Gumimaci pontszám (b\_2):\\
+H\_0: b\_2 = 0\\
+H\_1: b\_2 ≠ 0
+
+\paragraph{Eredmények:}\label{eredmuxe9nyek}
+
+Tengelymetszet (b\_0):\\
+\textbar t-érték\textbar{} = 4.506 \textgreater{} 2.0117 (t\_krit)\\
+Döntés: 5\%-os szignifikanciaszinten elvetjük H\_0-t
+
+Küzdőképesség (b\_1):\\
+\textbar t-érték\textbar{} = 9.041 \textgreater{} 2.0117 (t\_krit)\\
+Döntés: 5\%-os szignifikanciaszinten elvetjük H\_0-t
+
+Gumimaci pontszám (b\_2):\\
+\textbar t-érték\textbar{} = 5.158 \textgreater{} 2.0117 (t\_krit)\\
+Döntés: 5\%-os szignifikanciaszinten elvetjük H\_0-t
+
+\paragraph{Következtetések:}\label{kuxf6vetkeztetuxe9sek}
+
+A t-próba kritikus értéke ±2.0117 (47 szabadságfok mellett, 5\%-os
+szignifikanciaszinten).\\
+A tengelymetszet \textbar t\textbar{} = 4.506 értéke meghaladja a
+kritikus értéket, ami azt jelenti, hogy amikor mindkét magyarázó változó
+0, akkor a várható Y érték (4.1082) szignifikánsan különbözik
+nullától.\\
+A küzdőképesség \textbar t\textbar{} = 9.041 értéke jelentősen
+meghaladja a kritikus értéket, tehát erős szignifikáns hatást mutat.\\
+A gumimaci pontszám \textbar t\textbar{} = 5.158 értéke szintén
+meghaladja a kritikus értéket, így ez a hatás is szignifikáns.\\
+Mindhárom változó esetében elvetjük a nullhipotézist, ami azt jelenti,
+hogy mindegyik hatása szignifikáns.
+
+    \subsection{Multikollinearitás
+vizsgálata}\label{multikollinearituxe1s-vizsguxe1lata}
+
+\subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{539}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{vif\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{)}
+\PY{n}{vif\PYZus{}data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Változó}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{columns}
+\PY{n}{vif\PYZus{}data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{VIF}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{variance\PYZus{}inflation\PYZus{}factor}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{VIF értékek:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{vif\PYZus{}data}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+VIF értékek:
+  Változó       VIF
+0     X\_1  2.273206
+1     X\_2  2.273206
+    \end{Verbatim}
+
+    \subsubsection{Értelmezés}\label{uxe9rtelmezuxe9s}
+
+\paragraph{Döntési szabály:}\label{duxf6ntuxe9si-szabuxe1ly}
+
+VIF \textgreater{} 5: erős multikollinearitás\\
+VIF \textgreater{} 10: súlyos multikollinearitás\\
+VIF ≈ 1: nincs multikollinearitás
+
+\paragraph{VIF érték:}\label{vif-uxe9rtuxe9k}
+
+A VIF érték: 2.273206\\
+A VIF érték azt mutatja, hogy egy változó mennyire magyarázható a többi
+magyarázó változóval.\\
+VIF = 1/(1-R²), ahol R² az adott változónak a többi magyarázó változóval
+vett determinációs együtthatója.\\
+A kapott VIF értékek alapján nincs jelentős multikollinearitás a
+modellben.
+
+\paragraph{Miért probléma a
+multikollinearitás?}\label{miuxe9rt-probluxe9ma-a-multikollinearituxe1s}
+
+A multikollinearitás növeli az együtthatók standard hibáját.
+Bizonytalanabbá teszi a paraméterek becslését. Nehézzé teszi az egyes
+változók egyedi hatásának elkülönítését. Instabillá teheti a modellt:
+kis változás az adatokban nagy változást okozhat az együtthatókban.
+
+    \subsection{Hibatagok vizsgálata}\label{hibatagok-vizsguxe1lata}
+
+\subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{540}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Reziduálisok kiszámítása}
+\PY{n}{residuals} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{resid}
+
+\PY{c+c1}{\PYZsh{} 1. Várható érték vizsgálata}
+\PY{n}{resid\PYZus{}mean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}
+\PY{n}{resid\PYZus{}std} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{residuals}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X\PYZus{}sm}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{)}
+\PY{n}{t\PYZus{}stat} \PY{o}{=} \PY{n}{resid\PYZus{}mean} \PY{o}{/} \PY{p}{(}\PY{n}{resid\PYZus{}std}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{n}{p\PYZus{}value\PYZus{}mean} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{stats}\PY{o}{.}\PY{n}{t}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{t\PYZus{}stat}\PY{p}{)}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} 2. Normalitás vizsgálata (Shapiro\PYZhy{}Wilk teszt)}
+\PY{n}{shapiro\PYZus{}stat}\PY{p}{,} \PY{n}{shapiro\PYZus{}p} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{shapiro}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} 3. Függetlenség vizsgálata (Durbin\PYZhy{}Watson teszt)}
+\PY{n}{dw\PYZus{}stat} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{stats}\PY{o}{.}\PY{n}{stattools}\PY{o}{.}\PY{n}{durbin\PYZus{}watson}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} 4. Homoszkedaszticitás vizsgálata (Breusch\PYZhy{}Pagan teszt)}
+\PY{n}{bp\PYZus{}test} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{stats}\PY{o}{.}\PY{n}{diagnostic}\PY{o}{.}\PY{n}{het\PYZus{}breuschpagan}\PY{p}{(}\PY{n}{residuals}\PY{p}{,} \PY{n}{X\PYZus{}sm}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} 5. Variancia becslése}
+\PY{n}{variance} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{var}\PY{p}{(}\PY{n}{residuals}\PY{p}{,} \PY{n}{ddof}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X\PYZus{}sm}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Hibatagok vizsgálata:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}}\PY{l+s+s2}{\PYZdq{}} \PY{o}{*} \PY{l+m+mi}{50}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Várható érték vizsgálata:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Átlag (várható érték becslése): }\PY{l+s+si}{\PYZob{}}\PY{n}{resid\PYZus{}mean}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t\PYZhy{}statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{t\PYZus{}stat}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{p\PYZhy{}érték: }\PY{l+s+si}{\PYZob{}}\PY{n}{p\PYZus{}value\PYZus{}mean}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Normalitás vizsgálata (Shapiro\PYZhy{}Wilk):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Teszt statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{shapiro\PYZus{}stat}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{p\PYZhy{}érték: }\PY{l+s+si}{\PYZob{}}\PY{n}{shapiro\PYZus{}p}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Függetlenség vizsgálata (Durbin\PYZhy{}Watson):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{DW statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{dw\PYZus{}stat}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Homoszkedaszticitás vizsgálata (Breusch\PYZhy{}Pagan):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Teszt statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{bp\PYZus{}test}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{p\PYZhy{}érték: }\PY{l+s+si}{\PYZob{}}\PY{n}{bp\PYZus{}test}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Variancia becslése:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Becsült variancia: }\PY{l+s+si}{\PYZob{}}\PY{n}{variance}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+\PY{n}{stats}\PY{o}{.}\PY{n}{probplot}\PY{p}{(}\PY{n}{residuals}\PY{p}{,} \PY{n}{dist}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{norm}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{plot}\PY{o}{=}\PY{n}{plt}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Q\PYZhy{}Q Plot a normalitás vizsgálatához}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Hibatagok vizsgálata:
+--------------------------------------------------
+
+Várható érték vizsgálata:
+Átlag (várható érték becslése): -4.263256414560601e-16
+t-statisztika: -1.3035784262394252e-15
+p-érték: 0.9999999999999989
+
+Normalitás vizsgálata (Shapiro-Wilk):
+Teszt statisztika: 0.9779
+p-érték: 0.4678
+
+Függetlenség vizsgálata (Durbin-Watson):
+DW statisztika: 1.5689
+
+Homoszkedaszticitás vizsgálata (Breusch-Pagan):
+Teszt statisztika: 1.3786
+p-érték: 0.5019
+
+Variancia becslése:
+Becsült variancia: 5.3478
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{2. Feladat_files/2. Feladat_31_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{Értelmezés}\label{uxe9rtelmezuxe9s}
+
+\paragraph{Várható érték
+vizsgálata:}\label{vuxe1rhatuxf3-uxe9rtuxe9k-vizsguxe1lata}
+
+H\_0: E(ε) = 0\\
+H\_1: E(ε) ≠ 0\\
+t-statisztika értéke: -1.3036e-15\\
+p-érték: 1.0000\\
+Döntés: 1.0000 \textgreater{} 0.05, tehát nem vetjük el H\_0-t\\
+A lineáris regresszióban, ha a modell tartalmaz konstans tagot
+(interceptet), akkor a reziduálisok összege nulla lesz, és így az
+átlaguk is nulla, ezért ez nem túlzottan meglepő.
+
+\paragraph{Normalitás vizsgálata (Shapiro-Wilk
+teszt):}\label{normalituxe1s-vizsguxe1lata-shapiro-wilk-teszt}
+
+H\_0: A hibatagok normális eloszlásúak\\
+H\_1: A hibatagok nem normális eloszlásúak\\
+Teszt statisztika: 0.9779\\
+p-érték: 0.4678\\
+Döntés: 0.4678 \textgreater{} 0.05, tehát nem vetjük el H\_0-t
+
+\paragraph{Függetlenség vizsgálata (Durbin-Watson
+teszt):}\label{fuxfcggetlensuxe9g-vizsguxe1lata-durbin-watson-teszt}
+
+H\_0: A hibatagok függetlenek\\
+H\_1: A hibatagok autokorreláltak\\
+DW statisztika: 1.5689\\
+Kritikus értékek 5\%-os szinten: dL = 1.46, dU = 1.63 (DW táblázatból:
+https://www3.nd.edu/\textasciitilde wevans1/econ30331/durbin\_watson\_tables.pdf)\\
+Döntés: 1.5689 beleesik az {[}1.46, 1.63{]} intervallumba, így nem
+tudunk egyértelmű döntést hozni
+
+\paragraph{Homoszkedaszticitás vizsgálata (Breusch-Pagan
+teszt):}\label{homoszkedaszticituxe1s-vizsguxe1lata-breusch-pagan-teszt}
+
+H\_0: A hibatagok homoszkedasztikusak\\
+H\_1: A hibatagok heteroszkedasztikusak\\
+Teszt statisztika: 1.3786\\
+p-érték: 0.5019\\
+Döntés: 0.5019 \textgreater{} 0.05, tehát nem vetjük el H\_0-t
+
+\paragraph{Variancia becslése:}\label{variancia-becsluxe9se}
+
+A hibatagok becsült varianciája: 5.3478\\
+A variancia a reziduálisok szóródását méri a regressziós egyenes körül.
+
+\paragraph{Összefoglaló
+értékelés:}\label{uxf6sszefoglaluxf3-uxe9rtuxe9keluxe9s}
+
+A várható érték feltétel teljesül.\\
+A normalitás feltétele teljesül.\\
+A függetlenség feltételéről nem tudunk egyértelmű döntést hozni.\\
+A homoszkedaszticitás feltétele teljesül (a szórás állandó).
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}

@@ -167,7 +167,7 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{1}
+    \title{1. Feladat}
     
     
     
@@ -387,19 +387,23 @@
     
 
 \begin{document}
-    
+    \makeatletter
+    \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+      {3.25ex \@plus1ex \@minus.2ex}%
+      {1em}%
+      {\normalfont\normalsize\bfseries}}
+    \makeatother
+
+    \setcounter{section}{-1}
+
     \maketitle
     
     
 
     
-    \section{Statisztikai Elemzés - Mesehősök Gumimaci
-Pontszámai}\label{statisztikai-elemzuxe9s---mesehux151suxf6k-gumimaci-pontszuxe1mai}
+    \section{Előkészületek}\label{elux151kuxe9szuxfcletek}
 
-\subsection{Adatok beolvasása és
-előkészítése}\label{adatok-beolvasuxe1sa-uxe9s-elux151kuxe9szuxedtuxe9se}
-
-    \subsubsection{Szükséges könyvtárak
+    \subsection{Szükséges könyvtárak
 importálása}\label{szuxfcksuxe9ges-kuxf6nyvtuxe1rak-importuxe1luxe1sa}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -411,7 +415,7 @@ importálása}\label{szuxfcksuxe9ges-kuxf6nyvtuxe1rak-importuxe1luxe1sa}
 \end{Verbatim}
 \end{tcolorbox}
 
-    \subsubsection{Adatok beolvasása}\label{adatok-beolvasuxe1sa}
+    \subsection{Adatok beolvasása}\label{adatok-beolvasuxe1sa}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{22}{\boxspacing}
@@ -450,7 +454,9 @@ mellekszereplo   50.0  2.9046  1.635708  0.17  1.5675  2.735  4.0050   7.24
 szuperhos        50.0  4.4258  2.879298  0.52  1.8700  3.770  6.0975   9.90
     \end{Verbatim}
 
-    \subsubsection{Próba meghatározása}\label{pruxf3ba-meghatuxe1rozuxe1sa}
+    \section{Hipotézisvizsgálat}\label{hipotuxe9zisvizsguxe1lat}
+
+    \subsection{Próba meghatározása}\label{pruxf3ba-meghatuxe1rozuxe1sa}
 
 Az adatok eloszlásáról nem tudunk semmit, csak hogy számok és a
 nagyságuk sorrendje számít, így ordinális változóknak tekintjük a
@@ -515,7 +521,7 @@ szignifikanciaszinten elvetjük a nullhipotézist.\\
 Azaz statisztikailag kimutatható, hogy van különbség a kategóriák
 gumimaci pontszámai között.
 
-    \subsection{Post-hoc elemzés}\label{post-hoc-elemzuxe9s}
+    \section{Post-hoc tesztek}\label{post-hoc-tesztek}
 
 Mivel szignifikáns eltérés találtunk, ezért páronként meg kell
 vizsgálnunk a kategóriákat. A változóink ordinálisak, páronként végezzük
@@ -524,7 +530,7 @@ mintáink nem összefüggők.\\
 Páronként 2 független mintás ordinális próbát, azaz Mann-Whitney próbát
 hajtunk végre.
 
-\subsubsection{Mann-Whitney Z teszt
+\subsection{Mann-Whitney Z teszt
 páronként}\label{mann-whitney-z-teszt-puxe1ronkuxe9nt}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
