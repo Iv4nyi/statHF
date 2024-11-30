@@ -411,7 +411,7 @@
 importálása}\label{szuxfcksuxe9ges-kuxf6nyvtuxe1rak-importuxe1luxe1sa}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{112}{\boxspacing}
+\prompt{In}{incolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}}\PY{k}{reset} \PYZhy{}f
 \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
@@ -432,7 +432,7 @@ importálása}\label{szuxfcksuxe9ges-kuxf6nyvtuxe1rak-importuxe1luxe1sa}
     \subsection{Adatok beolvasása}\label{adatok-beolvasuxe1sa}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{113}{\boxspacing}
+\prompt{In}{incolor}{16}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Oszlopok definiálása}
 \PY{n}{cols} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Idő}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Érték}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -455,7 +455,7 @@ illesztése}\label{determinisztikus-modell-illesztuxe9se}
 \subsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{120}{\boxspacing}
+\prompt{In}{incolor}{17}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Modellek összehasonlítása}
 \PY{n}{max\PYZus{}degree} \PY{o}{=} \PY{l+m+mi}{10}
@@ -570,7 +570,7 @@ Dep. Variable:                  Érték   R-squared:                       0.921
 Model:                            OLS   Adj. R-squared:                  0.916
 Method:                 Least Squares   F-statistic:                     178.9
 Date:                Sat, 30 Nov 2024   Prob (F-statistic):           2.30e-25
-Time:                        17:10:13   Log-Likelihood:                -129.06
+Time:                        20:33:49   Log-Likelihood:                -129.06
 No. Observations:                  50   AIC:                             266.1
 Df Residuals:                      46   BIC:                             273.8
 Df Model:                           3
@@ -683,7 +683,7 @@ alkalmazása}\label{exponenciuxe1lis-simuxedtuxe1s-alkalmazuxe1sa}
 \subsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{115}{\boxspacing}
+\prompt{In}{incolor}{20}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Exponenciális simítás (optimális alpha meghatározása)}
 \PY{n}{model} \PY{o}{=} \PY{n}{SimpleExpSmoothing}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Érték}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{)}
@@ -699,7 +699,7 @@ alkalmazása}\label{exponenciuxe1lis-simuxedtuxe1s-alkalmazuxe1sa}
 \PY{n}{rmse} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{mse}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} Reziduálisok vizsgálata}
-\PY{n}{residuals} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Érték}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{fitted\PYZus{}values}
+\PY{n}{residuals} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{resid}
 
 \PY{c+c1}{\PYZsh{} 1. Várható érték vizsgálata}
 \PY{n}{resid\PYZus{}mean} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}
@@ -760,16 +760,6 @@ alkalmazása}\label{exponenciuxe1lis-simuxedtuxe1s-alkalmazuxe1sa}
 \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
 \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
-
-\PY{c+c1}{\PYZsh{} Reziduálisok ábrázolása}
-\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
-\PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{fitted\PYZus{}values}\PY{p}{,} \PY{n}{residuals}\PY{p}{)}
-\PY{n}{plt}\PY{o}{.}\PY{n}{axhline}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Illesztett értékek}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Reziduálisok}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Reziduálisok az illesztett értékek függvényében}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
-\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -812,26 +802,19 @@ Előrejelzések:
     \end{center}
     { \hspace*{\fill} \\}
     
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{3. Feladat_files/3. Feladat_9_2.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
     \subsection{Exponenciális simítás
 eredményei}\label{exponenciuxe1lis-simuxedtuxe1s-eredmuxe9nyei}
 
 \subsubsection{Modell specifikációk}\label{modell-specifikuxe1ciuxf3k}
 
-A modellben a SimpleExpSmoothing függvény által optimálisan
-meghatározott α = 1.0000 simítási paramétert használtuk.
+A modellben a SimpleExpSmoothing függvény által meghatározott α = 1.0000
+simítási paramétert használtuk.
 
 \subsubsection{Illeszkedési mutatók}\label{illeszkeduxe9si-mutatuxf3k}
 
 MAE (Mean Absolute Error): 1.3446\\
 Az átlagos abszolút hiba azt mutatja, hogy az előrejelzéseink átlagosan
-1.3446 egységgel térnek el a tényleges értékektől. Ez a hiba mértéke
-közepesnek tekinthető, ami arra utal, hogy a modell nem biztosít
-kiemelkedően pontos illeszkedést az adatokhoz.
+1.3446 egységgel térnek el a tényleges értékektől.
 
 MSE (Mean Squared Error): 2.7510\\
 Az átlagos négyzetes hiba az előrejelzési hibák négyzetének átlaga,
@@ -840,9 +823,7 @@ a hibákat négyzetre emeli.
 
 RMSE (Root Mean Squared Error): 1.6586\\
 A négyzetes átlaggyök hiba az MSE négyzetgyöke, ami az előrejelzési
-hibák átlagos nagyságát adja meg az eredeti mértékegységben. Az
-1.6586-os érték megerősíti, hogy az előrejelzések átlagosan körülbelül
-1.66 egységgel térnek el a tényleges értékektől.
+hibák átlagos nagyságát adja meg az eredeti mértékegységben.
 
 Simítási paraméter (alpha): 1.0000\\
 Az alpha értéke 1.0, ami azt jelenti, hogy a modell teljes mértékben az
@@ -907,7 +888,7 @@ jelen\\
 \subsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{121}{\boxspacing}
+\prompt{In}{incolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Idősor stacionaritásának vizsgálata (ADF teszt)}
 \PY{n}{adf\PYZus{}result} \PY{o}{=} \PY{n}{adfuller}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Érték}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
@@ -999,7 +980,7 @@ Modell eredmények:
 Dep. Variable:                  Érték   No. Observations:                   50
 Model:                 ARIMA(1, 1, 1)   Log Likelihood                 -68.798
 Date:                Sat, 30 Nov 2024   AIC                            143.597
-Time:                        17:17:04   BIC                            149.272
+Time:                        20:32:09   BIC                            149.272
 Sample:                             0   HQIC                           145.750
                                  - 50
 Covariance Type:                  opg
@@ -1031,8 +1012,8 @@ Előrejelzések:
     \end{center}
     { \hspace*{\fill} \\}
     
-    \subsection{Box-Jenkins (ARIMA) modell
-eredményei}\label{box-jenkins-arima-modell-eredmuxe9nyei}
+    \subsection{Értelmezés ε = 0.05 szignifikanciaszint
+mellett}\label{uxe9rtelmezuxe9s-ux3b5-0.05-szignifikanciaszint-mellett}
 
 \subsubsection{ADF teszt eredménye}\label{adf-teszt-eredmuxe9nye}
 
