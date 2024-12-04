@@ -2,6 +2,8 @@
 
     \usepackage[breakable]{tcolorbox}
     \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    \DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
+
     \DeclareUnicodeCharacter{2260}{\ensuremath{\neq}}
 	\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
 
@@ -408,7 +410,6 @@
 importálása}\label{szuxfcksuxe9ges-kuxf6nyvtuxe1rak-importuxe1luxe1sa}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{529}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}}\PY{k}{reset} \PYZhy{}f
 
@@ -426,7 +427,6 @@ importálása}\label{szuxfcksuxe9ges-kuxf6nyvtuxe1rak-importuxe1luxe1sa}
     \subsection{Adatok beolvasása}\label{adatok-beolvasuxe1sa}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{530}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Oszlopok definiálása}
 \PY{n}{cols} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -475,7 +475,6 @@ pontbecslése}\label{az-egyuxfctthatuxf3k-pontbecsluxe9se}
 pontbecslése}\label{regressziuxf3s-egyuxfctthatuxf3k-pontbecsluxe9se}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{531}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Modell illesztése}
 \PY{n}{model} \PY{o}{=} \PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
@@ -501,12 +500,12 @@ b\_2 (gumimaci pontszám) = -0.6124
 pontbecslése}\label{standardizuxe1lt-regressziuxf3s-egyuxfctthatuxf3k-pontbecsluxe9se}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{532}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Standardizálás}
 \PY{n}{scaler} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}
 \PY{n}{X\PYZus{}scaled} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{X}\PY{p}{)}
-\PY{n}{y\PYZus{}scaled} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{y}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}
+\PY{n}{y\PYZus{}scaled} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{y}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} A StandardScaler() 2D adatot vár, ezért y\PYZhy{}t átalakítjuk azzá, majd a ravel()\PYZhy{}lel visszaalakítjuk 1D\PYZhy{}vé, mert a regresszióhoz úgy kell}
 
 \PY{c+c1}{\PYZsh{} Standardizált modell illesztése}
 \PY{n}{model\PYZus{}scaled} \PY{o}{=} \PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
@@ -535,13 +534,14 @@ OLS Lineáris regresszió
 
 Az együtthatók közvetlenül összehasonlíthatók, mert azonos skálán
 vannak.\\
-Látható, hogy az X\_1 változó hatása erősebb az Y-ra, mint X\_2-é.
+Látható, hogy az $X_1$ változó hatása erősebb az Y-ra, mint $X_2$-é, mert
+egységnyi változás $X_1$ változóban 0.7141 egységnyi hatással van Y-ra, míg
+egységnyi változás $X_2$ változóban csak 0.4074 hatással van Y-ra.
 
     \subsection{Előrejelzés
 készítése}\label{elux151rejelzuxe9s-kuxe9szuxedtuxe9se}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{533}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Új megfigyelés}
 \PY{n}{X\PYZus{}new} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}
@@ -576,14 +576,12 @@ együtthatókra}\label{konfidenciaintervallum-az-egyuxfctthatuxf3kra}
 \subsubsection{Kód és eredmény}\label{kuxf3d-uxe9s-eredmuxe9ny}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{534}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{X\PYZus{}sm} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{add\PYZus{}constant}\PY{p}{(}\PY{n}{X}\PY{p}{)}
 \PY{n}{model\PYZus{}sm} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{OLS}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{n}{X\PYZus{}sm}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} 95\PYZpc{}\PYZhy{}os konfidencia intervallumok az együtthatókra}
 \PY{n}{conf\PYZus{}int} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{conf\PYZus{}int}\PY{p}{(}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Egy R\PYZhy{}szerű summary:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{conf\PYZus{}int}\PY{p}{)}
@@ -599,14 +597,13 @@ együtthatókra}\label{konfidenciaintervallum-az-egyuxfctthatuxf3kra}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Egy R-szerű summary:
                             OLS Regression Results
 ==============================================================================
 Dep. Variable:                      Y   R-squared:                       0.708
 Model:                            OLS   Adj. R-squared:                  0.695
 Method:                 Least Squares   F-statistic:                     56.88
-Date:                Fri, 29 Nov 2024   Prob (F-statistic):           2.81e-13
-Time:                        17:23:12   Log-Likelihood:                -111.32
+Date:                Wed, 04 Dec 2024   Prob (F-statistic):           2.81e-13
+Time:                        13:20:03   Log-Likelihood:                -111.32
 No. Observations:                  50   AIC:                             228.6
 Df Residuals:                      47   BIC:                             234.4
 Df Model:                           2
@@ -666,9 +663,8 @@ A változók szignifikánsak.
 intervallum}\label{elux151rejelzuxe9si-intervallum}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{535}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Konstans hozzáadása, csupa 1\PYZhy{}es}
+\PY{c+c1}{\PYZsh{} Konstans hozzáadása}
 \PY{n}{X\PYZus{}new\PYZus{}sm} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{add\PYZus{}constant}\PY{p}{(}\PY{n}{X\PYZus{}new}\PY{p}{,} \PY{n}{has\PYZus{}constant}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{add}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} Előrejelzési intervallum számítása}
@@ -700,7 +696,6 @@ R²}\label{determinuxe1ciuxf3s-egyuxfctthatuxf3-ruxb2-uxe9s-korriguxe1lt-ruxb2}
 \subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{536}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{r2} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{rsquared}
 \PY{n}{adj\PYZus{}r2} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{rsquared\PYZus{}adj}
@@ -741,7 +736,8 @@ szórásnégyzetösszeg, SST a teljes szórásnégyzetösszeg.
 A korrigált R² értéke 0.6952, ami figyelembe veszi a magyarázó változók
 számát is.\\
 A korrigált R² = 1 - (1-R²)*(n-1)/(n-k-1) képlettel számolható, ahol n a
-mintaelemszám, k a magyarázó változók száma.\\
+mintaelemszám (jelen esetben 50), k a magyarázó változók száma (jelen
+esetben 2).\\
 Ez a mutató bünteti a felesleges magyarázó változók bevonását.\\
 Értéke mindig kisebb vagy egyenlő, mint az R².
 
@@ -770,13 +766,12 @@ tesztek}\label{modelldiagnosztikai-tesztek}
 \subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{541}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} F\PYZhy{}próba statisztikái}
 \PY{n}{f\PYZus{}stat} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{fvalue}
 \PY{n}{f\PYZus{}pvalue} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{f\PYZus{}pvalue}
 \PY{n}{df\PYZus{}reg} \PY{o}{=} \PY{l+m+mi}{2}  \PY{c+c1}{\PYZsh{} magyarázó változók száma}
-\PY{n}{df\PYZus{}res} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}  \PY{c+c1}{\PYZsh{} n\PYZhy{}k\PYZhy{}1, ahol k a magyarázó változók száma}
+\PY{n}{df\PYZus{}res} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{df\PYZus{}reg} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1} 
 \PY{n}{f\PYZus{}crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{f}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{l+m+mf}{0.95}\PY{p}{,} \PY{n}{df\PYZus{}reg}\PY{p}{,} \PY{n}{df\PYZus{}res}\PY{p}{)}
 
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{F\PYZhy{}statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{f\PYZus{}stat}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -795,10 +790,10 @@ Kritikus érték (F0.95(2,47)): 3.1951
 
 \paragraph{Hipotézisek:}\label{hipotuxe9zisek}
 
-H\_0: A modell nem magyarázza az eredményváltozó varianciáját (X\_1 =
-X\_2 = 0)\\
-H\_1: A modell szignifikánsan magyarázza az eredményváltozó varianciáját
-(X\_i ≠ 0)\\
+$H_0$: A modell nem magyarázza az eredményváltozó varianciáját ($X_1$ = $X_2$ =
+0)\\
+$H_1$: A modell szignifikánsan magyarázza az eredményváltozó varianciáját
+($X_1$ ≠ 0 és/vagy $X_2$ ≠ 0)\\
 Szignifikanciaszint: α = 0.05
 
 \paragraph{F-próba eredménye:}\label{f-pruxf3ba-eredmuxe9nye}
@@ -809,12 +804,13 @@ Kritikus érték (F0.95(2,47)): 3.1951
 
 \paragraph{Döntés:}\label{duxf6ntuxe9s}
 
-Az F-próba p-értéke (2.808718819001525e-13) kisebb, mint α = 0.05.\\
-Elvetjük a nullhipotézist.
+Az F-próba p-értéke (2.808718819001525e-13) kisebb, mint α = 0.05, ezért
+elvetjük a nullhipotézist 95\%-os konfidenciaszinten.
 
 \paragraph{Következtetés:}\label{kuxf6vetkeztetuxe9s}
 
-A kapott eredmények alapján a modellünk szignifikáns.\\
+A kapott eredmények alapján a modellünk szignifikáns α = 0.05
+szignifikanciaszint mellett.\\
 Ez azt jelenti, hogy a küzdőképesség és gumimaci pontszám együttesen
 magyarázzák szignifikánsan a mesehős erejét.\\
 A modell alkalmas előrejelzésre és további elemzésre.\\
@@ -836,10 +832,9 @@ tesztelése}\label{vuxe1ltozuxf3k-szignifikanciuxe1juxe1nak-teszteluxe9se}
 \subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{538}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Kritikus érték meghatározása (kétoldali próba)}
-\PY{n}{df\PYZus{}res} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{3}  \PY{c+c1}{\PYZsh{} szabadságfok: n\PYZhy{}k\PYZhy{}1}
+\PY{n}{df\PYZus{}res} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{df\PYZus{}reg} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}  
 \PY{n}{t\PYZus{}crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{t}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{l+m+mf}{0.975}\PY{p}{,} \PY{n}{df\PYZus{}res}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 0.975 a kétoldali próba miatt}
 
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Kritikus érték:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -868,31 +863,31 @@ X\_2           -0.6124      0.119     -5.158      0.000      -0.851      -0.374
 
 \paragraph{Hipotézispárok:}\label{hipotuxe9zispuxe1rok}
 
-Tengelymetszet (b\_0):\\
-H\_0: b\_0 = 0\\
-H\_1: b\_0 ≠ 0
+Tengelymetszet ($b_0$):\\
+$H_0$: $b_0$ = 0\\
+$H_1$: $b_0$ ≠ 0
 
-Küzdőképesség (b\_1):\\
-H\_0: b\_1 = 0\\
-H\_1: b\_1 ≠ 0
+Küzdőképesség ($b_1$):\\
+$H_0$: $b_1$ = 0\\
+$H_1$: $b_1$ ≠ 0
 
-Gumimaci pontszám (b\_2):\\
-H\_0: b\_2 = 0\\
-H\_1: b\_2 ≠ 0
+Gumimaci pontszám ($b_2$):\\
+$H_0$: $b_2$ = 0\\
+$H_1$: $b_2$ ≠ 0
 
 \paragraph{Eredmények:}\label{eredmuxe9nyek}
 
-Tengelymetszet (b\_0):\\
+Tengelymetszet ($b_0$):\\
 \textbar t-érték\textbar{} = 4.506 \textgreater{} 2.0117 (t\_krit)\\
-Döntés: 5\%-os szignifikanciaszinten elvetjük H\_0-t
+Döntés: 5\%-os szignifikanciaszinten elvetjük $H_0$-t
 
-Küzdőképesség (b\_1):\\
+Küzdőképesség ($b_1$):\\
 \textbar t-érték\textbar{} = 9.041 \textgreater{} 2.0117 (t\_krit)\\
-Döntés: 5\%-os szignifikanciaszinten elvetjük H\_0-t
+Döntés: 5\%-os szignifikanciaszinten elvetjük $H_0$-t
 
-Gumimaci pontszám (b\_2):\\
+Gumimaci pontszám ($b_2$):\\
 \textbar t-érték\textbar{} = 5.158 \textgreater{} 2.0117 (t\_krit)\\
-Döntés: 5\%-os szignifikanciaszinten elvetjük H\_0-t
+Döntés: 5\%-os szignifikanciaszinten elvetjük $H_0$-t
 
 \paragraph{Következtetések:}\label{kuxf6vetkeztetuxe9sek}
 
@@ -915,7 +910,6 @@ vizsgálata}\label{multikollinearituxe1s-vizsguxe1lata}
 \subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{539}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{vif\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{)}
 \PY{n}{vif\PYZus{}data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Változó}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{columns}
@@ -965,7 +959,6 @@ kis változás az adatokban nagy változást okozhat az együtthatókban.
 \subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{540}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Reziduálisok kiszámítása}
 \PY{n}{residuals} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{resid}
@@ -1052,11 +1045,11 @@ Becsült variancia: 5.3478
 \paragraph{Várható érték
 vizsgálata:}\label{vuxe1rhatuxf3-uxe9rtuxe9k-vizsguxe1lata}
 
-H\_0: E(ε) = 0\\
-H\_1: E(ε) ≠ 0\\
+$H_0$: E(ε) = 0\\
+$H_1$: E(ε) ≠ 0\\
 t-statisztika értéke: -1.3036e-15\\
 p-érték: 1.0000\\
-Döntés: 1.0000 \textgreater{} 0.05, tehát nem vetjük el H\_0-t\\
+Döntés: 1.0000 \textgreater{} 0.05, tehát nem vetjük el $H_0$-t\\
 A lineáris regresszióban, ha a modell tartalmaz konstans tagot
 (interceptet), akkor a reziduálisok összege nulla lesz, és így az
 átlaguk is nulla, ezért ez nem túlzottan meglepő.
@@ -1064,17 +1057,17 @@ A lineáris regresszióban, ha a modell tartalmaz konstans tagot
 \paragraph{Normalitás vizsgálata (Shapiro-Wilk
 teszt):}\label{normalituxe1s-vizsguxe1lata-shapiro-wilk-teszt}
 
-H\_0: A hibatagok normális eloszlásúak\\
-H\_1: A hibatagok nem normális eloszlásúak\\
+$H_0$: A hibatagok normális eloszlásúak\\
+$H_1$: A hibatagok nem normális eloszlásúak\\
 Teszt statisztika: 0.9779\\
 p-érték: 0.4678\\
-Döntés: 0.4678 \textgreater{} 0.05, tehát nem vetjük el H\_0-t
+Döntés: 0.4678 \textgreater{} 0.05, tehát nem vetjük el $H_0$-t
 
 \paragraph{Függetlenség vizsgálata (Durbin-Watson
 teszt):}\label{fuxfcggetlensuxe9g-vizsguxe1lata-durbin-watson-teszt}
 
-H\_0: A hibatagok függetlenek\\
-H\_1: A hibatagok autokorreláltak\\
+$H_0$: A hibatagok függetlenek\\
+$H_1$: A hibatagok autokorreláltak\\
 DW statisztika: 1.5689\\
 Kritikus értékek 5\%-os szinten: dL = 1.46, dU = 1.63 (DW táblázatból:
 https://www3.nd.edu/\textasciitilde wevans1/econ30331/durbin\_watson\_tables.pdf)\\
@@ -1084,11 +1077,11 @@ tudunk egyértelmű döntést hozni
 \paragraph{Homoszkedaszticitás vizsgálata (Breusch-Pagan
 teszt):}\label{homoszkedaszticituxe1s-vizsguxe1lata-breusch-pagan-teszt}
 
-H\_0: A hibatagok homoszkedasztikusak\\
-H\_1: A hibatagok heteroszkedasztikusak\\
+$H_0$: A hibatagok homoszkedasztikusak\\
+$H_1$: A hibatagok heteroszkedasztikusak\\
 Teszt statisztika: 1.3786\\
 p-érték: 0.5019\\
-Döntés: 0.5019 \textgreater{} 0.05, tehát nem vetjük el H\_0-t
+Döntés: 0.5019 \textgreater{} 0.05, tehát nem vetjük el $H_0$-t
 
 \paragraph{Variancia becslése:}\label{variancia-becsluxe9se}
 

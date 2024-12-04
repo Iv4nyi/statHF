@@ -16,6 +16,8 @@ def fix_unicode_in_tex(file_path):
 
     content = re.sub(r"(?<!\$)(H_[0-9]+|[A-Za-z]\^[0-9]+)(?!\$)", r"$\1$", content)
 
+    content = re.sub(r'\\prompt\{In\}\{incolor\}\{\d+\}\{\\boxspacing\}\n', '', content)
+
     with open(file_path, 'w', encoding='utf-8') as file:
         file.write(content)
 
