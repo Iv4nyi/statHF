@@ -390,7 +390,6 @@
     
 
 \begin{document}
-
     \makeatletter
     \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
       {3.25ex \@plus1ex \@minus.2ex}%
@@ -411,7 +410,6 @@
 importálása}\label{szuxfcksuxe9ges-kuxf6nyvtuxe1rak-importuxe1luxe1sa}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}}\PY{k}{reset} \PYZhy{}f
 \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
@@ -432,7 +430,6 @@ importálása}\label{szuxfcksuxe9ges-kuxf6nyvtuxe1rak-importuxe1luxe1sa}
     \subsection{Adatok beolvasása}\label{adatok-beolvasuxe1sa}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{16}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Oszlopok definiálása}
 \PY{n}{cols} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Idő}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Érték}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -455,7 +452,6 @@ illesztése}\label{determinisztikus-modell-illesztuxe9se}
 \subsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{17}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Modellek összehasonlítása}
 \PY{n}{max\PYZus{}degree} \PY{o}{=} \PY{l+m+mi}{10}
@@ -501,8 +497,8 @@ illesztése}\label{determinisztikus-modell-illesztuxe9se}
 \PY{c+c1}{\PYZsh{} 2. Normalitás vizsgálata (Shapiro\PYZhy{}Wilk teszt)}
 \PY{n}{shapiro\PYZus{}stat}\PY{p}{,} \PY{n}{shapiro\PYZus{}p} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{shapiro}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}
 
-\PY{c+c1}{\PYZsh{} 3. Függetlenség vizsgálata (Durbin\PYZhy{}Watson teszt)}
-\PY{n}{dw\PYZus{}stat} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{stats}\PY{o}{.}\PY{n}{stattools}\PY{o}{.}\PY{n}{durbin\PYZus{}watson}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 3. Függetlenség vizsgálata (Ljung\PYZhy{}Box teszt)}
+\PY{n}{lb\PYZus{}stat} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{stats}\PY{o}{.}\PY{n}{diagnostic}\PY{o}{.}\PY{n}{acorr\PYZus{}ljungbox}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} 4. Homoszkedaszticitás vizsgálata (Breusch\PYZhy{}Pagan teszt)}
 \PY{n}{bp\PYZus{}test} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{stats}\PY{o}{.}\PY{n}{diagnostic}\PY{o}{.}\PY{n}{het\PYZus{}breuschpagan}\PY{p}{(}\PY{n}{residuals}\PY{p}{,} \PY{n}{model}\PY{o}{.}\PY{n}{model}\PY{o}{.}\PY{n}{exog}\PY{p}{)}
@@ -518,8 +514,11 @@ illesztése}\label{determinisztikus-modell-illesztuxe9se}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Teszt statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{shapiro\PYZus{}stat}\PY{l+s+si}{:}\PY{l+s+s2}{.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{p\PYZhy{}érték: }\PY{l+s+si}{\PYZob{}}\PY{n}{shapiro\PYZus{}p}\PY{l+s+si}{:}\PY{l+s+s2}{.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{3. Függetlenség vizsgálata (Durbin\PYZhy{}Watson):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{DW statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{dw\PYZus{}stat}\PY{l+s+si}{:}\PY{l+s+s2}{.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{3. Függetlenség vizsgálata (Ljung\PYZhy{}Box):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lag  Teszt statisztika   p\PYZhy{}érték}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}}\PY{l+s+s2}{\PYZdq{}} \PY{o}{*} \PY{l+m+mi}{35}\PY{p}{)}
+\PY{k}{for} \PY{n}{lag}\PY{p}{,} \PY{n}{row} \PY{o+ow}{in} \PY{n}{lb\PYZus{}stat}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{lag}\PY{l+s+si}{:}\PY{l+s+s2}{2d}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{   }\PY{l+s+si}{\PYZob{}}\PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lb\PYZus{}stat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{14.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{   }\PY{l+s+si}{\PYZob{}}\PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lb\PYZus{}pvalue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.6e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{4. Homoszkedaszticitás vizsgálata (Breusch\PYZhy{}Pagan):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Teszt statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{bp\PYZus{}test}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -569,8 +568,8 @@ Modellek összehasonlítása:
 Dep. Variable:                  Érték   R-squared:                       0.921
 Model:                            OLS   Adj. R-squared:                  0.916
 Method:                 Least Squares   F-statistic:                     178.9
-Date:                Sat, 30 Nov 2024   Prob (F-statistic):           2.30e-25
-Time:                        20:33:49   Log-Likelihood:                -129.06
+Date:                Wed, 04 Dec 2024   Prob (F-statistic):           2.30e-25
+Time:                        20:18:41   Log-Likelihood:                -129.06
 No. Observations:                  50   AIC:                             266.1
 Df Residuals:                      46   BIC:                             273.8
 Df Model:                           3
@@ -596,8 +595,19 @@ p-érték: 0.999999999999686
 Teszt statisztika: 0.971069
 p-érték: 0.255692
 
-3. Függetlenség vizsgálata (Durbin-Watson):
-DW statisztika: 0.160960
+3. Függetlenség vizsgálata (Ljung-Box):
+Lag  Teszt statisztika   p-érték
+-----------------------------------
+ 1        36.706257   1.373379e-09
+ 2        57.588516   3.124732e-13
+ 3        66.733136   2.135808e-14
+ 4        68.558895   4.572428e-14
+ 5        68.644769   1.961309e-13
+ 6        70.969881   2.585887e-13
+ 7        75.831668   9.719502e-14
+ 8        83.001311   1.214121e-14
+ 9        92.734283   4.596171e-16
+10       102.056297   2.110987e-17
 
 4. Homoszkedaszticitás vizsgálata (Breusch-Pagan):
 Teszt statisztika: 16.254783
@@ -627,8 +637,8 @@ mellett}\label{uxe9rtelmezuxe9s-ux3b5-0.05-szignifikanciaszint-mellett}
 \subsubsection{Modellválasztás}\label{modellvuxe1lasztuxe1s}
 
 Az AIC és BIC értékek alapján a 8. fokú polinom adná a legjobb
-illeszkedést, azonban a 3. fokú polinom mellett döntöttem az előrejelzés
-robusztussága miatt.
+illeszkedést, azonban a 3. fokú polinom mellett döntöttem az overfitting
+elkerülése végett.
 
 \subsubsection{Várható érték
 vizsgálata}\label{vuxe1rhatuxf3-uxe9rtuxe9k-vizsguxe1lata}
@@ -648,14 +658,14 @@ Teszt statisztika: 0.9711\\
 p-érték: 0.2557\\
 Döntés: 0.2557 \textgreater{} 0.05, tehát nem vetjük el $H_0$-t
 
-\subsubsection{Függetlenség vizsgálata (Durbin-Watson
-teszt)}\label{fuxfcggetlensuxe9g-vizsguxe1lata-durbin-watson-teszt}
+\subsubsection{Függetlenség vizsgálata (Ljung-Box
+teszt)}\label{fuxfcggetlensuxe9g-vizsguxe1lata-ljung-box-teszt}
 
 $H_0$: A hibatagok függetlenek\\
 $H_1$: A hibatagok autokorreláltak\\
-DW statisztika: 0.1610\\
-Döntés: A DW statisztika 0-hoz közeli értéke erős pozitív
-autokorrelációt jelez
+A teszt minden vizsgált késleltetésre (1-10 lag) erősen szignifikáns
+autokorrelációt mutat\\
+Döntés: Minden késleltetésre p \textless{} 0.05, tehát elvetjük $H_0$-t
 
 \subsubsection{Homoszkedaszticitás vizsgálata (Breusch-Pagan
 teszt)}\label{homoszkedaszticituxe1s-vizsguxe1lata-breusch-pagan-teszt}
@@ -683,7 +693,6 @@ alkalmazása}\label{exponenciuxe1lis-simuxedtuxe1s-alkalmazuxe1sa}
 \subsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{20}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Exponenciális simítás (optimális alpha meghatározása)}
 \PY{n}{model} \PY{o}{=} \PY{n}{SimpleExpSmoothing}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Érték}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{)}
@@ -710,8 +719,8 @@ alkalmazása}\label{exponenciuxe1lis-simuxedtuxe1s-alkalmazuxe1sa}
 \PY{c+c1}{\PYZsh{} 2. Normalitás vizsgálata (Shapiro\PYZhy{}Wilk teszt)}
 \PY{n}{shapiro\PYZus{}stat}\PY{p}{,} \PY{n}{shapiro\PYZus{}p} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{shapiro}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}
 
-\PY{c+c1}{\PYZsh{} 3. Függetlenség vizsgálata (Durbin\PYZhy{}Watson teszt)}
-\PY{n}{dw\PYZus{}stat} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{stats}\PY{o}{.}\PY{n}{stattools}\PY{o}{.}\PY{n}{durbin\PYZus{}watson}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 3. Függetlenség vizsgálata (Ljung\PYZhy{}Box teszt)}
+\PY{n}{lb\PYZus{}stat} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{stats}\PY{o}{.}\PY{n}{diagnostic}\PY{o}{.}\PY{n}{acorr\PYZus{}ljungbox}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} 4. Homoszkedaszticitás vizsgálata (Breusch\PYZhy{}Pagan teszt)}
 \PY{n}{exog} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{add\PYZus{}constant}\PY{p}{(}\PY{n}{fitted\PYZus{}values}\PY{p}{)}
@@ -735,8 +744,11 @@ alkalmazása}\label{exponenciuxe1lis-simuxedtuxe1s-alkalmazuxe1sa}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Teszt statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{shapiro\PYZus{}stat}\PY{l+s+si}{:}\PY{l+s+s2}{.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{p\PYZhy{}érték: }\PY{l+s+si}{\PYZob{}}\PY{n}{shapiro\PYZus{}p}\PY{l+s+si}{:}\PY{l+s+s2}{.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{3. Függetlenség vizsgálata (Durbin\PYZhy{}Watson):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{DW statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{dw\PYZus{}stat}\PY{l+s+si}{:}\PY{l+s+s2}{.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{3. Függetlenség vizsgálata (Ljung\PYZhy{}Box):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lag  Teszt statisztika   p\PYZhy{}érték}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}}\PY{l+s+s2}{\PYZdq{}} \PY{o}{*} \PY{l+m+mi}{35}\PY{p}{)}
+\PY{k}{for} \PY{n}{lag}\PY{p}{,} \PY{n}{row} \PY{o+ow}{in} \PY{n}{lb\PYZus{}stat}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{lag}\PY{l+s+si}{:}\PY{l+s+s2}{2d}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{   }\PY{l+s+si}{\PYZob{}}\PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lb\PYZus{}stat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{14.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{   }\PY{l+s+si}{\PYZob{}}\PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lb\PYZus{}pvalue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.6e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{4. Homoszkedaszticitás vizsgálata (Breusch\PYZhy{}Pagan teszt):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Teszt statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{bp\PYZus{}test}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -782,8 +794,19 @@ p-érték: 0.881823
 Teszt statisztika: 0.961779
 p-érték: 0.105540
 
-3. Függetlenség vizsgálata (Durbin-Watson):
-DW statisztika: 0.376660
+3. Függetlenség vizsgálata (Ljung-Box):
+Lag  Teszt statisztika   p-érték
+-----------------------------------
+ 1        34.645889   3.954729e-09
+ 2        59.005126   1.538862e-13
+ 3        82.658607   8.253867e-18
+ 4       104.418817   1.126498e-21
+ 5       118.862058   5.466764e-24
+ 6       131.665637   5.730822e-26
+ 7       144.778551   5.062839e-28
+ 8       151.797860   8.266950e-29
+ 9       155.033991   7.976957e-29
+10       156.828963   1.461608e-28
 
 4. Homoszkedaszticitás vizsgálata (Breusch-Pagan teszt):
 Teszt statisztika: 0.487821
@@ -853,16 +876,14 @@ Teszt statisztika: 0.9618\\
 p-érték: 0.1055\\
 Döntés: 0.1055 \textgreater{} 0.05, tehát nem vetjük el $H_0$-t
 
-\subsubsection{Függetlenség vizsgálata (Durbin-Watson
-teszt)}\label{fuxfcggetlensuxe9g-vizsguxe1lata-durbin-watson-teszt}
+\subsubsection{Függetlenség vizsgálata (Ljung-Box
+teszt)}\label{fuxfcggetlensuxe9g-vizsguxe1lata-ljung-box-teszt}
 
 $H_0$: A hibatagok függetlenek\\
 $H_1$: A hibatagok autokorreláltak\\
-DW statisztika: 0.3767\\
-Döntés: A DW statisztika 0-hoz közeli értéke erős pozitív
-autokorrelációt jelez, ami azt sugallja, hogy a modell nem kezeli
-megfelelően az időbeli függőségeket, és az előrejelzési hibák egymással
-korreláltak.
+A teszt minden vizsgált késleltetésre (1-10 lag) erősen szignifikáns
+autokorrelációt mutat\\
+Döntés: Minden késleltetésre p \textless{} 0.05, tehát elvetjük $H_0$-t
 
 \subsubsection{Homoszkedaszticitás vizsgálata (Breusch-Pagan
 teszt)}\label{homoszkedaszticituxe1s-vizsguxe1lata-breusch-pagan-teszt}
@@ -888,7 +909,6 @@ jelen\\
 \subsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Idősor stacionaritásának vizsgálata (ADF teszt)}
 \PY{n}{adf\PYZus{}result} \PY{o}{=} \PY{n}{adfuller}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Érték}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
@@ -924,8 +944,8 @@ jelen\\
 \PY{c+c1}{\PYZsh{} 2. Normalitás vizsgálata}
 \PY{n}{shapiro\PYZus{}stat}\PY{p}{,} \PY{n}{shapiro\PYZus{}p} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{shapiro}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}
 
-\PY{c+c1}{\PYZsh{} 3. Függetlenség vizsgálata}
-\PY{n}{dw\PYZus{}stat} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{stats}\PY{o}{.}\PY{n}{stattools}\PY{o}{.}\PY{n}{durbin\PYZus{}watson}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 3. Függetlenség vizsgálata (Ljung\PYZhy{}Box teszt)}
+\PY{n}{lb\PYZus{}stat} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{stats}\PY{o}{.}\PY{n}{diagnostic}\PY{o}{.}\PY{n}{acorr\PYZus{}ljungbox}\PY{p}{(}\PY{n}{residuals}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} 4. Homoszkedaszticitás vizsgálata}
 \PY{n}{exog} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{add\PYZus{}constant}\PY{p}{(}\PY{n}{fitted\PYZus{}values}\PY{p}{)}
@@ -938,8 +958,12 @@ jelen\\
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Hibatagok vizsgálata:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Várható érték teszt p\PYZhy{}érték: }\PY{l+s+si}{\PYZob{}}\PY{n}{p\PYZus{}value\PYZus{}mean}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Shapiro\PYZhy{}Wilk teszt p\PYZhy{}érték: }\PY{l+s+si}{\PYZob{}}\PY{n}{shapiro\PYZus{}p}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Durbin\PYZhy{}Watson statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{dw\PYZus{}stat}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Breusch\PYZhy{}Pagan teszt p\PYZhy{}érték: }\PY{l+s+si}{\PYZob{}}\PY{n}{bp\PYZus{}test}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Ljung\PYZhy{}Box teszt:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lag  Teszt statisztika   p\PYZhy{}érték}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}}\PY{l+s+s2}{\PYZdq{}} \PY{o}{*} \PY{l+m+mi}{35}\PY{p}{)}
+\PY{k}{for} \PY{n}{lag}\PY{p}{,} \PY{n}{row} \PY{o+ow}{in} \PY{n}{lb\PYZus{}stat}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{lag}\PY{l+s+si}{:}\PY{l+s+s2}{2d}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{   }\PY{l+s+si}{\PYZob{}}\PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lb\PYZus{}stat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{14.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{   }\PY{l+s+si}{\PYZob{}}\PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lb\PYZus{}pvalue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.6e}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Breusch\PYZhy{}Pagan teszt p\PYZhy{}érték: }\PY{l+s+si}{\PYZob{}}\PY{n}{bp\PYZus{}test}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s1}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Előrejelzések:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{pred} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{forecast}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
@@ -979,8 +1003,8 @@ Modell eredmények:
 ==============================================================================
 Dep. Variable:                  Érték   No. Observations:                   50
 Model:                 ARIMA(1, 1, 1)   Log Likelihood                 -68.798
-Date:                Sat, 30 Nov 2024   AIC                            143.597
-Time:                        20:32:09   BIC                            149.272
+Date:                Wed, 04 Dec 2024   AIC                            143.597
+Time:                        20:18:42   BIC                            149.272
 Sample:                             0   HQIC                           145.750
                                  - 50
 Covariance Type:                  opg
@@ -996,7 +1020,20 @@ sigma2         0.9504      0.193      4.913      0.000       0.571       1.329
 Hibatagok vizsgálata:
 Várható érték teszt p-érték: 0.8523
 Shapiro-Wilk teszt p-érték: 0.0627
-Durbin-Watson statisztika: 1.8668
+Ljung-Box teszt:
+Lag  Teszt statisztika   p-érték
+-----------------------------------
+ 1         0.212220   6.450331e-01
+ 2         3.389275   1.836658e-01
+ 3         3.694513   2.963968e-01
+ 4         7.022499   1.347040e-01
+ 5         7.781213   1.687128e-01
+ 6         7.867512   2.479714e-01
+ 7        13.683233   5.711086e-02
+ 8        13.708309   8.969225e-02
+ 9        15.190585   8.583220e-02
+10        16.478098   8.673992e-02
+
 Breusch-Pagan teszt p-érték: 0.5577
 
 Előrejelzések:
@@ -1022,14 +1059,16 @@ $H_1$: Az idősor stacionárius\\
 ADF Statisztika: -2.5644\\
 p-érték: 0.1006\\
 Döntés: 0.1006 \textgreater{} 0.05, tehát nem vetjük el $H_0$-t, az idősor
-nem stacionárius
+nem stacionárius, ezért szükséges differenciálnunk
 
 \subsubsection{Modell paraméterek}\label{modell-paramuxe9terek}
 
 ARIMA(1,1,1) modellt illesztettünk, ahol:\\
-- p = 1 (autoregresszív tag): 0.8688\\
-- d = 1 (differenciálás rendje)\\
-- q = 1 (mozgóátlag tag): -0.2181
+- p = 1 (autoregresszív tag), mert a PACF ábrán az első késleltetés volt
+szignifikáns\\
+- d = 1 (differenciálás rendje), mert az idősor nem stacionárius\\
+- q = 1 (mozgóátlag tag), mert az ACF ábra az első késleltetésnél mutat
+szignifikáns értéket
 
 \subsubsection{Paraméterek
 szignifikanciája}\label{paramuxe9terek-szignifikanciuxe1ja}
@@ -1062,12 +1101,10 @@ teszt)}\label{normalituxe1s-vizsguxe1lata-shapiro-wilk-teszt}
 
 p-érték: 0.0627 \textgreater{} 0.05, tehát nem vetjük el $H_0$-t
 
-\subsubsection{Függetlenség vizsgálata (Durbin-Watson
-teszt)}\label{fuxfcggetlensuxe9g-vizsguxe1lata-durbin-watson-teszt}
+\subsubsection{Függetlenség vizsgálata (Ljung-Box
+teszt)}\label{fuxfcggetlensuxe9g-vizsguxe1lata-ljung-box-teszt}
 
-DW statisztika: 1.8668\\
-Döntés: A DW statisztika közel van 2-höz, a függetlenség feltétele
-teljesül
+Minden késleltetésre p \textgreater{} 0.05, tehát nem vetjük el $H_0$-t
 
 \subsubsection{Homoszkedaszticitás vizsgálata (Breusch-Pagan
 teszt)}\label{homoszkedaszticituxe1s-vizsguxe1lata-breusch-pagan-teszt}
