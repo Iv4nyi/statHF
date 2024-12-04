@@ -2,9 +2,9 @@ import re
 
 def fix_unicode_in_tex(file_path):
     """
-    Replace Unicode subscript characters in a LaTeX file with LaTeX-compatible equivalents,
-    ensuring subscripts (e.g., X_1) are correctly wrapped in $...$ math mode,
-    while ignoring filenames, paths, and LaTeX commands.
+    - Replace Unicode subscript characters in a LaTeX file with LaTeX-compatible equivalents
+    - Ensure subscripts (e.g., X_1) are correctly wrapped in $...$ math mode
+    - Remove In [number] prompts from code blocks
     """
     # Define replacements for Unicode subscript numbers
     replacements = {
@@ -32,11 +32,14 @@ def fix_unicode_in_tex(file_path):
     # Match plain text subscripts, excluding filenames and LaTeX commands
     content = re.sub(r"(\\[a-zA-Z]+{[^}]*}|)?([A-Za-z]_[0-9]+)", wrap_subscripts, content)
 
+    # Remove In [number] prompts from code blocks
+    content = re.sub(r'\\prompt\{In\}\{incolor\}\{\d+\}\{\\boxspacing\}\n', '', content)
+
     # Write the modified content back to the file
     with open(file_path, 'w', encoding='utf-8') as file:
         file.write(content)
 
-    print(f"Subscripts wrapped in math mode and Unicode replacements applied to '{file_path}'.")
+    print(f"Subscripts wrapped in math mode, Unicode replacements applied, and In [number] prompts removed from '{file_path}'.")
 
 # Apply fixes to the LaTeX file
 fix_unicode_in_tex("2. Feladat.tex")

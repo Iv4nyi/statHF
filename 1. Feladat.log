@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=latex 2024.11.26)  4 DEC 2024 11:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=latex 2024.11.26)  4 DEC 2024 13:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1187,7 +1187,7 @@ File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count332
 \l__pdf_internal_box=\box91
 )
-No file "1. Feladat".aux.
+(./1. Feladat.aux)
 \openout1 = `"1. Feladat.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 392.
@@ -1207,6 +1207,7 @@ LaTeX Font Info:    ... okay on input line 392.
 LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 392.
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 3
 92.
+
 (/usr/local/texlive/2024/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
@@ -1333,11 +1334,13 @@ LaTeX Info: Redefining \omega on input line 392.
    defining Unicode char U+03F1 (decimal 1009)
    defining Unicode char U+03F5 (decimal 1013)
 Package hyperref Info: Link coloring ON on input line 392.
+(./1. Feladat.out) (./1. Feladat.out)
 \@outlinefile=\write5
 \openout5 = `"1. Feladat.out"'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 402
 .
+
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
@@ -1362,9 +1365,9 @@ LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 4
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 415.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 414.
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-427.
+425.
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
@@ -1379,24 +1382,14 @@ al/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `"1. Feladat".out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `"1. Feladat".out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  262BE3CD17528903783F580EFCD1A354;2133.
+Package rerunfilecheck Info: File `"1. Feladat".out' has not changed.
+(rerunfilecheck)             Checksum: 262BE3CD17528903783F580EFCD1A354;2133.
  ) 
 Here is how much of TeX's memory you used:
- 27308 strings out of 474117
- 504544 string characters out of 5743707
+ 27329 strings out of 474117
+ 504887 string characters out of 5743707
  1999184 words of memory out of 5000000
- 49182 multiletter control sequences out of 15000+600000
+ 49197 multiletter control sequences out of 15000+600000
  574283 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  101i,7n,107p,812b,749s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1414,10 +1407,10 @@ e/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/
 2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/20
 24/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2024
 /texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on "1. Feladat.pdf" (5 pages, 245148 bytes).
+Output written on "1. Feladat.pdf" (5 pages, 246211 bytes).
 PDF statistics:
- 130 PDF objects out of 1000 (max. 8388607)
- 92 compressed objects within 1 object stream
+ 168 PDF objects out of 1000 (max. 8388607)
+ 129 compressed objects within 2 object streams
  22 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 109 words of extra memory for PDF output out of 10000 (max. 10000000)
 

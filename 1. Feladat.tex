@@ -410,7 +410,6 @@
 importálása}\label{szuxfcksuxe9ges-kuxf6nyvtuxe1rak-importuxe1luxe1sa}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{21}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
 \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
@@ -421,7 +420,6 @@ importálása}\label{szuxfcksuxe9ges-kuxf6nyvtuxe1rak-importuxe1luxe1sa}
     \subsection{Adatok beolvasása}\label{adatok-beolvasuxe1sa}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{22}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Kategóriák definiálása}
 \PY{n}{kategoriak} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{szuperhos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{anti\PYZhy{}hos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mellekszereplo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fogonosz}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{allatsegito}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -482,7 +480,6 @@ Szignifikanciaszint: ε = 0.05
 számítása}\label{pruxf3bastatisztika-szuxe1muxedtuxe1sa}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{23}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{h\PYZus{}stat}\PY{p}{,} \PY{n}{p\PYZus{}value} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{kruskal}\PY{p}{(}\PY{o}{*}\PY{p}{[}\PY{n}{group}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gumimaci pontszám}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values} 
                                  \PY{k}{for} \PY{n}{name}\PY{p}{,} \PY{n}{group} \PY{o+ow}{in} \PY{n}{df\PYZus{}long}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kategória}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}\PY{p}{)}
@@ -537,7 +534,6 @@ hajtunk végre.
 páronként}\label{mann-whitney-z-teszt-puxe1ronkuxe9nt}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{24}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{kategoriak} \PY{o}{=} \PY{n}{df\PYZus{}long}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kategória}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
 \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.05} \PY{c+c1}{\PYZsh{} szignifikanciaszint}

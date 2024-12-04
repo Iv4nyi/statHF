@@ -398,6 +398,7 @@
     \makeatother
 
     \setcounter{section}{-1}
+
     \maketitle
     
     
@@ -409,7 +410,6 @@
 importálása}\label{szuxfcksuxe9ges-kuxf6nyvtuxe1rak-importuxe1luxe1sa}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZpc{}}\PY{k}{reset} \PYZhy{}f
 
@@ -427,7 +427,6 @@ importálása}\label{szuxfcksuxe9ges-kuxf6nyvtuxe1rak-importuxe1luxe1sa}
     \subsection{Adatok beolvasása}\label{adatok-beolvasuxe1sa}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Oszlopok definiálása}
 \PY{n}{cols} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
@@ -476,7 +475,6 @@ pontbecslése}\label{az-egyuxfctthatuxf3k-pontbecsluxe9se}
 pontbecslése}\label{regressziuxf3s-egyuxfctthatuxf3k-pontbecsluxe9se}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Modell illesztése}
 \PY{n}{model} \PY{o}{=} \PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
@@ -484,30 +482,30 @@ pontbecslése}\label{regressziuxf3s-egyuxfctthatuxf3k-pontbecsluxe9se}
 
 \PY{c+c1}{\PYZsh{} Együtthatók és tengelymetszet}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Regressziós együtthatók:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{$b_0$ (tengelymetszet) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model}\PY{o}{.}\PY{n}{intercept\PYZus{}}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{$b_1$ (küzdőképesség) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{$b_2$ (gumimaci pontszám) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b\PYZus{}0 (tengelymetszet) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model}\PY{o}{.}\PY{n}{intercept\PYZus{}}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b\PYZus{}1 (küzdőképesség) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b\PYZus{}2 (gumimaci pontszám) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
 
 Regressziós együtthatók:
-$b_0$ (tengelymetszet) = 4.1082
-$b_1$ (küzdőképesség) = 1.0282
-$b_2$ (gumimaci pontszám) = -0.6124
+b\_0 (tengelymetszet) = 4.1082
+b\_1 (küzdőképesség) = 1.0282
+b\_2 (gumimaci pontszám) = -0.6124
     \end{Verbatim}
 
     \subsubsection{Standardizált regressziós együtthatók
 pontbecslése}\label{standardizuxe1lt-regressziuxf3s-egyuxfctthatuxf3k-pontbecsluxe9se}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Standardizálás}
 \PY{n}{scaler} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}
 \PY{n}{X\PYZus{}scaled} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{X}\PY{p}{)}
-\PY{n}{y\PYZus{}scaled} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{y}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}
+\PY{n}{y\PYZus{}scaled} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{y}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} A StandardScaler() 2D adatot vár, ezért y\PYZhy{}t átalakítjuk azzá, majd a ravel()\PYZhy{}lel visszaalakítjuk 1D\PYZhy{}vé, mert a regresszióhoz úgy kell}
 
 \PY{c+c1}{\PYZsh{} Standardizált modell illesztése}
 \PY{n}{model\PYZus{}scaled} \PY{o}{=} \PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
@@ -515,16 +513,16 @@ pontbecslése}\label{standardizuxe1lt-regressziuxf3s-egyuxfctthatuxf3k-pontbecsl
 
 \PY{c+c1}{\PYZsh{} Standardizált együtthatók}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Standardizált regressziós együtthatók:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{$b_1$* (küzdőképesség) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model\PYZus{}scaled}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{$b_2$* (gumimaci pontszám) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model\PYZus{}scaled}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b\PYZus{}1* (küzdőképesség) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model\PYZus{}scaled}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b\PYZus{}2* (gumimaci pontszám) = }\PY{l+s+si}{\PYZob{}}\PY{n}{model\PYZus{}scaled}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
 
 Standardizált regressziós együtthatók:
-$b_1$* (küzdőképesség) = 0.7141
-$b_2$* (gumimaci pontszám) = -0.4074
+b\_1* (küzdőképesség) = 0.7141
+b\_2* (gumimaci pontszám) = -0.4074
     \end{Verbatim}
 
     \subsubsection{Lineáris modell:}\label{lineuxe1ris-modell}
@@ -536,13 +534,14 @@ OLS Lineáris regresszió
 
 Az együtthatók közvetlenül összehasonlíthatók, mert azonos skálán
 vannak.\\
-Látható, hogy az $X_1$ változó hatása erősebb az Y-ra, mint $X_2$-é.
+Látható, hogy az $X_1$ változó hatása erősebb az Y-ra, mint $X_2$-é, mert
+egységnyi változás $X_1$ változóban 0.7141 egységnyi hatással van Y-ra, míg
+egységnyi változás $X_2$ változóban csak 0.4074 hatással van Y-ra.
 
     \subsection{Előrejelzés
 készítése}\label{elux151rejelzuxe9s-kuxe9szuxedtuxe9se}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{10}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Új megfigyelés}
 \PY{n}{X\PYZus{}new} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}
@@ -555,8 +554,8 @@ készítése}\label{elux151rejelzuxe9s-kuxe9szuxedtuxe9se}
 
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Előrejelzés eredménye:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Input értékek:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{} Küzdőképesség ($X_1$) = }\PY{l+s+si}{\PYZob{}}\PY{n}{X\PYZus{}new}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{} Gumimaci pontszám ($X_2$) = }\PY{l+s+si}{\PYZob{}}\PY{n}{X\PYZus{}new}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{} Küzdőképesség (X\PYZus{}1) = }\PY{l+s+si}{\PYZob{}}\PY{n}{X\PYZus{}new}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{} Gumimaci pontszám (X\PYZus{}2) = }\PY{l+s+si}{\PYZob{}}\PY{n}{X\PYZus{}new}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZus{}2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Becsült erő (Y) = }\PY{l+s+si}{\PYZob{}}\PY{n}{prediction}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
@@ -565,8 +564,8 @@ készítése}\label{elux151rejelzuxe9s-kuxe9szuxedtuxe9se}
 
 Előrejelzés eredménye:
 Input értékek:
-- Küzdőképesség ($X_1$) = 85
-- Gumimaci pontszám ($X_2$) = 8.5
+- Küzdőképesség (X\_1) = 85
+- Gumimaci pontszám (X\_2) = 8.5
 
 Becsült erő (Y) = 86.2962
     \end{Verbatim}
@@ -577,37 +576,34 @@ együtthatókra}\label{konfidenciaintervallum-az-egyuxfctthatuxf3kra}
 \subsubsection{Kód és eredmény}\label{kuxf3d-uxe9s-eredmuxe9ny}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{11}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{X\PYZus{}sm} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{add\PYZus{}constant}\PY{p}{(}\PY{n}{X}\PY{p}{)}
 \PY{n}{model\PYZus{}sm} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{OLS}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{n}{X\PYZus{}sm}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} 95\PYZpc{}\PYZhy{}os konfidencia intervallumok az együtthatókra}
 \PY{n}{conf\PYZus{}int} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{conf\PYZus{}int}\PY{p}{(}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.05}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Egy R\PYZhy{}szerű summary:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{summary}\PY{p}{(}\PY{p}{)}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{conf\PYZus{}int}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Együtthatók 95}\PY{l+s+si}{\PYZpc{}\PYZhy{}o}\PY{l+s+s2}{s konfidencia intervallumai:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}}\PY{l+s+s2}{\PYZdq{}} \PY{o}{*} \PY{l+m+mi}{50}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{$b_0$ (tengelymetszet):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b\PYZus{}0 (tengelymetszet):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[}\PY{l+s+si}{\PYZob{}}\PY{n}{conf\PYZus{}int}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+si}{\PYZob{}}\PY{n}{conf\PYZus{}int}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{$b_1$ (küzdőképesség):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{b\PYZus{}1 (küzdőképesség):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[}\PY{l+s+si}{\PYZob{}}\PY{n}{conf\PYZus{}int}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+si}{\PYZob{}}\PY{n}{conf\PYZus{}int}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{$b_2$ (gumimaci pontszám):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{b\PYZus{}2 (gumimaci pontszám):}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[}\PY{l+s+si}{\PYZob{}}\PY{n}{conf\PYZus{}int}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+si}{\PYZob{}}\PY{n}{conf\PYZus{}int}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Egy R-szerű summary:
                             OLS Regression Results
 ==============================================================================
 Dep. Variable:                      Y   R-squared:                       0.708
 Model:                            OLS   Adj. R-squared:                  0.695
 Method:                 Least Squares   F-statistic:                     56.88
-Date:                Sat, 30 Nov 2024   Prob (F-statistic):           2.81e-13
-Time:                        21:31:19   Log-Likelihood:                -111.32
+Date:                Wed, 04 Dec 2024   Prob (F-statistic):           2.81e-13
+Time:                        13:20:03   Log-Likelihood:                -111.32
 No. Observations:                  50   AIC:                             228.6
 Df Residuals:                      47   BIC:                             234.4
 Df Model:                           2
@@ -637,13 +633,13 @@ X\_2   -0.851320 -0.373576
 
 Együtthatók 95\%-os konfidencia intervallumai:
 --------------------------------------------------
-$b_0$ (tengelymetszet):
+b\_0 (tengelymetszet):
 [2.2740, 5.9423]
 
-$b_1$ (küzdőképesség):
+b\_1 (küzdőképesség):
 [0.7994, 1.2570]
 
-$b_2$ (gumimaci pontszám):
+b\_2 (gumimaci pontszám):
 [-0.8513, -0.3736]
     \end{Verbatim}
 
@@ -667,9 +663,8 @@ A változók szignifikánsak.
 intervallum}\label{elux151rejelzuxe9si-intervallum}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{12}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Konstans hozzáadása, csupa 1\PYZhy{}es}
+\PY{c+c1}{\PYZsh{} Konstans hozzáadása}
 \PY{n}{X\PYZus{}new\PYZus{}sm} \PY{o}{=} \PY{n}{sm}\PY{o}{.}\PY{n}{add\PYZus{}constant}\PY{p}{(}\PY{n}{X\PYZus{}new}\PY{p}{,} \PY{n}{has\PYZus{}constant}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{add}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 
 \PY{c+c1}{\PYZsh{} Előrejelzési intervallum számítása}
@@ -701,7 +696,6 @@ R²}\label{determinuxe1ciuxf3s-egyuxfctthatuxf3-ruxb2-uxe9s-korriguxe1lt-ruxb2}
 \subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{r2} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{rsquared}
 \PY{n}{adj\PYZus{}r2} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{rsquared\PYZus{}adj}
@@ -742,7 +736,8 @@ szórásnégyzetösszeg, SST a teljes szórásnégyzetösszeg.
 A korrigált R² értéke 0.6952, ami figyelembe veszi a magyarázó változók
 számát is.\\
 A korrigált R² = 1 - (1-R²)*(n-1)/(n-k-1) képlettel számolható, ahol n a
-mintaelemszám, k a magyarázó változók száma.\\
+mintaelemszám (jelen esetben 50), k a magyarázó változók száma (jelen
+esetben 2).\\
 Ez a mutató bünteti a felesleges magyarázó változók bevonását.\\
 Értéke mindig kisebb vagy egyenlő, mint az R².
 
@@ -771,13 +766,12 @@ tesztek}\label{modelldiagnosztikai-tesztek}
 \subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{14}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} F\PYZhy{}próba statisztikái}
 \PY{n}{f\PYZus{}stat} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{fvalue}
 \PY{n}{f\PYZus{}pvalue} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{f\PYZus{}pvalue}
 \PY{n}{df\PYZus{}reg} \PY{o}{=} \PY{l+m+mi}{2}  \PY{c+c1}{\PYZsh{} magyarázó változók száma}
-\PY{n}{df\PYZus{}res} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}  \PY{c+c1}{\PYZsh{} n\PYZhy{}k\PYZhy{}1, ahol k a magyarázó változók száma}
+\PY{n}{df\PYZus{}res} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{df\PYZus{}reg} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1} 
 \PY{n}{f\PYZus{}crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{f}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{l+m+mf}{0.95}\PY{p}{,} \PY{n}{df\PYZus{}reg}\PY{p}{,} \PY{n}{df\PYZus{}res}\PY{p}{)}
 
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{F\PYZhy{}statisztika: }\PY{l+s+si}{\PYZob{}}\PY{n}{f\PYZus{}stat}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -799,7 +793,7 @@ Kritikus érték (F0.95(2,47)): 3.1951
 $H_0$: A modell nem magyarázza az eredményváltozó varianciáját ($X_1$ = $X_2$ =
 0)\\
 $H_1$: A modell szignifikánsan magyarázza az eredményváltozó varianciáját
-(X\_i ≠ 0)\\
+($X_1$ ≠ 0 és/vagy $X_2$ ≠ 0)\\
 Szignifikanciaszint: α = 0.05
 
 \paragraph{F-próba eredménye:}\label{f-pruxf3ba-eredmuxe9nye}
@@ -810,12 +804,13 @@ Kritikus érték (F0.95(2,47)): 3.1951
 
 \paragraph{Döntés:}\label{duxf6ntuxe9s}
 
-Az F-próba p-értéke (2.808718819001525e-13) kisebb, mint α = 0.05.\\
-Elvetjük a nullhipotézist.
+Az F-próba p-értéke (2.808718819001525e-13) kisebb, mint α = 0.05, ezért
+elvetjük a nullhipotézist 95\%-os konfidenciaszinten.
 
 \paragraph{Következtetés:}\label{kuxf6vetkeztetuxe9s}
 
-A kapott eredmények alapján a modellünk szignifikáns.\\
+A kapott eredmények alapján a modellünk szignifikáns α = 0.05
+szignifikanciaszint mellett.\\
 Ez azt jelenti, hogy a küzdőképesség és gumimaci pontszám együttesen
 magyarázzák szignifikánsan a mesehős erejét.\\
 A modell alkalmas előrejelzésre és további elemzésre.\\
@@ -837,10 +832,9 @@ tesztelése}\label{vuxe1ltozuxf3k-szignifikanciuxe1juxe1nak-teszteluxe9se}
 \subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{15}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Kritikus érték meghatározása (kétoldali próba)}
-\PY{n}{df\PYZus{}res} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{3}  \PY{c+c1}{\PYZsh{} szabadságfok: n\PYZhy{}k\PYZhy{}1}
+\PY{n}{df\PYZus{}res} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{df\PYZus{}reg} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}  
 \PY{n}{t\PYZus{}crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{t}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{l+m+mf}{0.975}\PY{p}{,} \PY{n}{df\PYZus{}res}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 0.975 a kétoldali próba miatt}
 
 \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Kritikus érték:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
@@ -916,7 +910,6 @@ vizsgálata}\label{multikollinearituxe1s-vizsguxe1lata}
 \subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{16}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{vif\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{)}
 \PY{n}{vif\PYZus{}data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Változó}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{columns}
@@ -966,7 +959,6 @@ kis változás az adatokban nagy változást okozhat az együtthatókban.
 \subsubsection{Kód és eredmények}\label{kuxf3d-uxe9s-eredmuxe9nyek}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{17}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Reziduálisok kiszámítása}
 \PY{n}{residuals} \PY{o}{=} \PY{n}{model\PYZus{}sm}\PY{o}{.}\PY{n}{resid}
