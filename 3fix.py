@@ -21,4 +21,4 @@ def fix_unicode_in_tex(file_path):
 
     print(f"Replacements and math wrapping applied successfully to '{file_path}'.")
 
-fix_unicode_in_tex("3. Feladat.tex")
+fix_unicode_in_tex("1. Feladat.tex")

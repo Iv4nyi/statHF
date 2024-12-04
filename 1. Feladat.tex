@@ -4,6 +4,9 @@
     \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
     \DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
 
+    \DeclareUnicodeCharacter{2260}{\ensuremath{\neq}}
+	\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
     \usepackage{graphicx}
@@ -470,8 +473,8 @@ megfogalmazása}\label{hipotuxe9zisek-megfogalmazuxe1sa}
 
 \paragraph{Hipotézispár:}\label{hipotuxe9zispuxe1r}
 
-H0: A kategóriák pontszámainak eloszlása azonos\\
-H1: Van két olyan kategória, amelyek pontszámainak eloszlása
+$H_0$: A kategóriák pontszámainak eloszlása azonos\\
+$H_1$: Van két olyan kategória, amelyek pontszámainak eloszlása
 különbözik\\
 Szignifikanciaszint: ε = 0.05
 
@@ -523,7 +526,7 @@ gumimaci pontszámai között.
 
     \section{Post-hoc tesztek}\label{post-hoc-tesztek}
 
-Mivel szignifikáns eltérés találtunk, ezért páronként meg kell
+Mivel szignifikáns eltérést találtunk, ezért páronként meg kell
 vizsgálnunk a kategóriákat. A változóink ordinálisak, páronként végezzük
 a teszteket (tehát minden teszt esetén 2 mintát vetünk össze), a
 mintáink nem összefüggők.\\
